@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+</head>
+<body>
+<!-- profile.html -->
+
+<!-- Добавьте следующий код в раздел с вкладками -->
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" href="#profile">Профиль</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/messages">Сообщения</a>
+  </li>
+</ul>
+
+<!-- Добавьте следующий код в раздел с содержимым вкладок -->
+<div class="tab-content">
+  <!-- Профиль -->
+  <div id="profile" class="tab-pane fade show active">
+    <!-- Содержимое раздела профиля -->
+  </div>
+</div>
+    {% if user %}
+        <h1>Profile: {{ user.username }}</h1>
+        <img src="/static/photos/{{ user.username }}.jpg" alt="Profile Photo" width="200"><br><br>
+        <p><a href="/">Go back to homepage</a></p>
+    {% else %}
+        <p>User not found</p>
+    {% endif %}
+</body>
+</html>

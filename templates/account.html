@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Account</title>
+</head>
+<body>
+    {% if logged_in %}
+        <h1>Welcome, {{ user.username }}!</h1>
+        <img src="/static/photos/{{ user.username }}.jpg" alt="Profile Photo" width="200"><br><br>
+        <form action="/account" method="post" enctype="multipart/form-data">
+            <label for="photo">Upload Profile Photo:</label>
+            <input type="file" id="photo" name="photo"><br><br>
+            <input type="submit" value="Upload">
+        </form>
+        <p><a href="/">Go back to homepage</a></p>
+        <p><a href="/logout">Logout</a></p>
+    {% else %}
+        <h1>Account</h1>
+        <p>Please login or register to access your account.</p>
+        <p><a href="/login">Login</a></p>
+        <p><a href="/register">Register</a></p>
+    {% endif %}
+</body>
+</html>

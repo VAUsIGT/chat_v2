@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Main page</title>
+  <style>
+    .account-info {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    .user-list {
+      float: right;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    .user-list li {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to main</h1>
+
+  <div class="account-info">
+    {% if logged_in %}
+		<p><a href="/account">Go to your account</a></p>
+		<p><a href="/logout">Logout</a></p>
+	{% else %}
+		<p><a href="/login">Login</a></p>
+		<p><a href="/register">Register</a></p>
+	{% endif %}
+  </div>
+
+  <ul class="user-list">
+    {% for user in users %}
+      <li><a href="{{ url_for('profile', username=user.username) }}">{{ user.username }}</a></li>
+    {% endfor %}
+  </ul>
+
+</body>
+</html>

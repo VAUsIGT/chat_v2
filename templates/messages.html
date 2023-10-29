@@ -1,0 +1,24 @@
+<body>
+	<!-- messages.html -->
+
+	<!-- Вывод сообщений -->
+	<h3>Сообщения для пользователя {{ username }}</h3>
+	<ul>
+	  {% for message in messages %}
+		<li>{{ message }}</li>
+	  {% endfor %}
+	</ul>
+
+	<!-- Форма для отправки сообщения -->
+	<form action="/send_message" method="post">
+	  <div class="form-group">
+		<label for="recipient">Получатель:</label>
+		<input type="text" class="form-control" id="recipient" name="recipient" required>
+	  </div>
+	  <div class="form-group">
+		<label for="message">Сообщение:</label>
+		<textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+	  </div>
+	  <button type="submit" class="btn btn-primary">Отправить</button>
+	</form>
+</body>
