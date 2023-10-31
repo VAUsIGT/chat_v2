@@ -1,34 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Profile</title>
+<style>
+	#top-bar {
+  background-color: #4c1366; /* Более темный фиолетовый цвет */
+  color: white; /* Белый цвет текста */
+  font-size: 25px; /* Увеличение размера текста */
+  padding: 20px;
+}
+
+#top-bar a {
+  color: white; /* Белый цвет ссылок */
+  margin-right: 10px; /* Отступ между ссылками */
+  text-decoration: none;  /* отключение подчеркивания */
+}
+
+#top-bar a:last-child {
+  margin-right: 0; /* Убираем отступ для последней ссылки */
+}
+
+.right-section {
+  float: right; /* Перемещаем элементы справа */
+}
+</style>
+    <title>Профиль {{ user.username }}</title>
 </head>
 <body>
-<!-- profile.html -->
+<div id="top-bar">
+  <a href="/">KD39CHAT</a>
+</div>
+	<!-- profile.html -->
 
 <!-- Добавьте следующий код в раздел с вкладками -->
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" href="#profile">Профиль</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/messages">Сообщения</a>
-  </li>
-</ul>
 
-<!-- Добавьте следующий код в раздел с содержимым вкладок -->
-<div class="tab-content">
+<!-- Добавьте следующий код в раздел с содержимым вкладок короче тут было много кода -->
+
   <!-- Профиль -->
-  <div id="profile" class="tab-pane fade show active">
+
     <!-- Содержимое раздела профиля -->
-  </div>
-</div>
+
+  <!-- Сообщения -->
+
+    <!-- Форма для отправки сообщения -->
+
     {% if user %}
-        <h1>Profile: {{ user.username }}</h1>
-        <img src="/static/photos/{{ user.username }}.jpg" alt="Profile Photo" width="200"><br><br>
-        <p><a href="/">Go back to homepage</a></p>
+        <h1>{{ user.username }}</h1>
+        <img src="/static/photos/{{ user.username }}.jpg" alt="Фото профиля" width="200" onerror="this.onerror=null; this.src='/static/photos/default.png';"><br><br>
+        <p><a href="/">На главную</a></p>
     {% else %}
-        <p>User not found</p>
+        <p>Пользователь не найден</p>
     {% endif %}
 </body>
 </html>

@@ -128,5 +128,5 @@ def is_username_taken(username):
     return False
 
 if __name__ == '__main__':
-    load_users()
-    app.run()
+        load_users()
+        app.run(port=80)

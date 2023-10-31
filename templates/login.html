@@ -1,17 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Вход</title>
+	<style>
+	#top-bar {
+  background-color: #4c1366; /* Более темный фиолетовый цвет */
+  color: white; /* Белый цвет текста */
+  font-size: 25px; /* Увеличение размера текста */
+  padding: 20px;
+}
+
+#top-bar a {
+  color: white; /* Белый цвет ссылок */
+  margin-right: 10px; /* Отступ между ссылками */
+  text-decoration: none;  /* отключение подчеркивания */
+}
+
+#top-bar a:last-child {
+  margin-right: 0; /* Убираем отступ для последней ссылки */
+}
+
+.right-section {
+  float: right; /* Перемещаем элементы справа */
+}
+</style>
 </head>
 <body>
-    <h1>Login</h1>
+<div id="top-bar">
+  <a href="/">KD39CHAT</a>
+  <div class="right-section">
+    {% if logged_in %}
+      <a href="/account">Профиль</a>
+      <a href="/logout">Выйти</a>
+    {% else %}
+      <a href="/login">Вход</a>
+      <a href="/register">Регистрация</a>
+    {% endif %}
+  </div>
+</div>
+    <h1>Вход</h1>
     <form action="/login" method="post">
-        <label for="username">Username:</label>
+        <label for="username">Имя:</label>
         <input type="text" id="username" name="username" required><br><br>
-        <label for="password">Password:</label>
+        <label for="password">Пароль:</label>
         <input type="password" id="password" name="password" required><br><br>
-        <input type="submit" value="Login">
+        <input type="submit" value="Войти">
     </form>
-    <p><a href="/">Go back to homepage</a></p>
+    <p><a href="/">На главную</a></p>
 </body>
 </html>

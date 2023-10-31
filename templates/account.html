@@ -1,24 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Account</title>
+    <title>Профиль</title>
+<style>
+#top-bar {
+  background-color: #4c1366; /* Более темный фиолетовый цвет */
+  color: white; /* Белый цвет текста */
+  font-size: 25px; /* Увеличение размера текста */
+  padding: 20px;
+}
+
+#top-bar a {
+  color: white; /* Белый цвет ссылок */
+  margin-right: 10px; /* Отступ между ссылками */
+  text-decoration: none;  /* отключение подчеркивания */
+}
+
+#top-bar a:last-child {
+  margin-right: 0; /* Убираем отступ для последней ссылки */
+}
+
+.right-section {
+  float: right; /* Перемещаем элементы справа */
+}
+#user-list {
+  float: right; /* Размещаем user-list справа */
+  width: 200px; /* Задаем ширину user-list */
+  padding: 10px;
+  background-color: #eaf6fa; /* Голубой цвет фона */
+  border: 1px solid #4c1366; /* Граница вокруг user-list */
+  margin-top: 2px; /* Отступ юзеров сверху */
+  }
+ </style>
 </head>
 <body>
+<div id="top-bar">
+  <a href="/">KD39CHAT</a>
     {% if logged_in %}
-        <h1>Welcome, {{ user.username }}!</h1>
-        <img src="/static/photos/{{ user.username }}.jpg" alt="Profile Photo" width="200"><br><br>
-        <form action="/account" method="post" enctype="multipart/form-data">
-            <label for="photo">Upload Profile Photo:</label>
-            <input type="file" id="photo" name="photo"><br><br>
-            <input type="submit" value="Upload">
-        </form>
-        <p><a href="/">Go back to homepage</a></p>
-        <p><a href="/logout">Logout</a></p>
-    {% else %}
-        <h1>Account</h1>
-        <p>Please login or register to access your account.</p>
-        <p><a href="/login">Login</a></p>
-        <p><a href="/register">Register</a></p>
+	  <a href="/messages">Сообщения</a>
     {% endif %}
+  <div class="right-section">
+    {% if logged_in %}
+      <a href="/account">Профиль</a>
+      <a href="/logout">Выйти</a>
+    {% else %}
+      <a href="/login">Вход</a>
+      <a href="/register">Регистрация</a>
+    {% endif %}
+  </div>
+</div>
+
+    {% if logged_in %}
+        <h1>{{ user.username }}</h1>
+		<img src="/static/photos/{{ user.username }}.jpg" alt="Фото профиля" width="200" onerror="this.onerror=null; this.src='/static/photos/default.png';"><br><br>
+        <form action="/account" method="post" enctype="multipart/form-data">
+            <label for="photo">Загрузить фото:</label>
+            <input type="file" id="photo" name="photo"><br><br>
+            <input type="submit" value="Загрузить">
+        </form>
+        <p><a href="/">На главную</a></p>
+        <p><a href="/logout">Выйти</a></p>
+    {% else %}
+        <h1>Профиль</h1>
+        <p>Пожалуйста, зарегистрируйтесь или войдите в свой аккаунт</p>
+        <p><a href="/login">Вход</a></p>
+        <p><a href="/register"></a>Регистрация</p>
+    {% endif %}
+	
+<div id="user-list">
+  <ul class="user-list">
+  <a>User list:</a>
+    {% for user in users %}
+      <li><a href="{{ url_for('profile', username=user.username) }}">{{ user.username }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
 </body>
 </html>
