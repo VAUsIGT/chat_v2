@@ -22,6 +22,7 @@
 .right-section {
   float: right; /* Перемещаем элементы справа */
 }
+
 </style>
     <title>Профиль {{ user.username }}</title>
 </head>
@@ -45,8 +46,9 @@
 
     {% if user %}
         <h1>{{ user.username }}</h1>
-        <img src="/static/photos/{{ user.username }}.jpg" alt="Фото профиля" width="200" onerror="this.onerror=null; this.src='/static/photos/default.png';"><br><br>
-        <p><a href="/">На главную</a></p>
+		<a target="_blank" href="/static/photos/{{ user.username }}.jpg">
+		<img src="/static/photos/{{ user.username }}.jpg" alt="Фото профиля" width="200" height="200" onerror="this.onerror=null; this.src='/static/photos/default.png';"><br><br>
+		</a>
     {% else %}
         <p>Пользователь не найден</p>
     {% endif %}

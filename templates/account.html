@@ -31,6 +31,12 @@
   border: 1px solid #4c1366; /* Граница вокруг user-list */
   margin-top: 2px; /* Отступ юзеров сверху */
   }
+  
+    body {
+    background-image: url('background2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
  </style>
 </head>
 <body>
@@ -41,8 +47,9 @@
     {% endif %}
   <div class="right-section">
     {% if logged_in %}
-      <a href="/account">Профиль</a>
+      <a href="/account">. Профиль</a>
       <a href="/logout">Выйти</a>
+	  <img src="/static/photos/{{ user.username }}.jpg" alt="Фото профиля" width="30" height="30" align="left" onerror="this.onerror=null; this.src='/static/photos/default.png';"><br><br>
     {% else %}
       <a href="/login">Вход</a>
       <a href="/register">Регистрация</a>
@@ -52,7 +59,9 @@
 
     {% if logged_in %}
         <h1>{{ user.username }}</h1>
-		<img src="/static/photos/{{ user.username }}.jpg" alt="Фото профиля" width="200" onerror="this.onerror=null; this.src='/static/photos/default.png';"><br><br>
+		<a target="_blank" href="/static/photos/{{ user.username }}.jpg">
+		<img src="/static/photos/{{ user.username }}.jpg" alt="Фото профиля" width="200" height="200" onerror="this.onerror=null; this.src='/static/photos/default.png';"><br><br>
+		</a>
         <form action="/account" method="post" enctype="multipart/form-data">
             <label for="photo">Загрузить фото:</label>
             <input type="file" id="photo" name="photo"><br><br>

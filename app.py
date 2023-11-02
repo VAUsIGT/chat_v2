@@ -51,6 +51,8 @@ def index():
 @app.route('/account', methods=['GET', 'POST'])
 def account():
     if 'username' in session:  # Проверить, вошел ли пользователь в аккаунт
+        logged_in = 'username' in session
+        render_template('index.html', logged_in=logged_in, users=users)
         if request.method == 'POST':
             username = session['username']  # Получить имя пользователя из сеанса
             file = request.files['photo']
@@ -75,7 +77,7 @@ def profile(username):
     if user:
         return render_template('profile.html', user=user)
     else:
-        return "User not found"
+        return "Пользователь не найден"
 
 @app.route('/messages/<username>')
 def messages(username):
